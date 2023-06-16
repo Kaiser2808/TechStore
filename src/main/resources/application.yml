@@ -17,7 +17,7 @@ spring:
   mail:
     host: ${MAIL_HOST:localhost}
     port: ${MAIL_PORT:1025}
-    username: test@test.com
+    username: techstore@reply.com
     password: password
     properties:
       mail:
@@ -27,6 +27,8 @@ spring:
             enable: false
   thymeleaf:
     cache: false
+jwt:
+  secret: 51665468576D5A7134743777217A25432A462D4A614E645267556B586E327235
 
 ---
 

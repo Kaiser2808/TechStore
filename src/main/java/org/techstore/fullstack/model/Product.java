@@ -2,24 +2,21 @@ package org.techstore.fullstack.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.techstore.fullstack.model.common.DateAudit;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "PRODUCTS")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "PRODUCTS", schema = "dbo")
 public class Product extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +27,10 @@ public class Product extends DateAudit {
     @Nationalized
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "THUMBNAIL")
+    @Nationalized
+    private String thumbnail;
 
     @Nationalized
     @Lob
@@ -44,10 +45,9 @@ public class Product extends DateAudit {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-
-    @OneToMany(mappedBy = "product")
-    private Set<Review> reviews = new LinkedHashSet<>();
-
     @OneToMany(mappedBy = "product")
     private Set<OrderItem> orderItems = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private Set<Review> reviews = new LinkedHashSet<>();
 }

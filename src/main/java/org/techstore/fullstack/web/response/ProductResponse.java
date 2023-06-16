@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.techstore.fullstack.web.request.CategoryRequest;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -15,9 +13,20 @@ import java.util.Set;
 @Builder
 public class ProductResponse {
     private Integer id;
-    private String name;
-    private String description;
-    private BigDecimal price;
-    private Set<CategoryResponse> categoryResponse;
 
+    private String name;
+
+    private String thumbnail;
+
+    private String description;
+
+    private BigDecimal price;
+
+    private String category;
+
+    private String brand;
+
+    private Integer rating;
+
+    private Double averageRating;
 }
